@@ -135,11 +135,11 @@ public class KassenWerkzeug implements Observer
     {
         if (source == _datumAuswaehlWerkzeug)
         {
-            System.out.println("Änderung von der Datumsauswahl!");
+            setzeTagesplanFuerAusgewaehltesDatum();
         }
         else if (source == _vorstellungAuswaehlWerkzeug)
         {
-            System.out.println("Änderung von der Vorstellungsauswahl!");
+            setzeAusgewaehlteVorstellung();
         }
     }
 }
