@@ -7,6 +7,8 @@ import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Datum;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Kino;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Tagesplan;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
+import de.uni_hamburg.informatik.swt.se2.kino.observer.Observable;
+import de.uni_hamburg.informatik.swt.se2.kino.observer.Observer;
 import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.datumsauswaehler.DatumAuswaehlWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf.PlatzVerkaufsWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.vorstellungsauswaehler.VorstellungsAuswaehlWerkzeug;
@@ -19,7 +21,7 @@ import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.vorstellungsauswaehler.V
  * @author SE2-Team
  * @version SoSe 2016
  */
-public class KassenWerkzeug
+public class KassenWerkzeug implements Observer
 {
     // Das Material dieses Werkzeugs
     private Kino _kino;
@@ -59,6 +61,8 @@ public class KassenWerkzeug
         setzeTagesplanFuerAusgewaehltesDatum();
         setzeAusgewaehlteVorstellung();
 
+        registriereBeobachter();
+
         _ui.zeigeFenster();
     }
 
@@ -75,6 +79,12 @@ public class KassenWerkzeug
                 reagiereAufBeendenButton();
             }
         });
+    }
+
+    private void registriereBeobachter()
+    {
+        _datumAuswaehlWerkzeug.addObserver(this);
+        _vorstellungAuswaehlWerkzeug.addObserver(this);
     }
 
     /**
@@ -118,5 +128,18 @@ public class KassenWerkzeug
     private Vorstellung getAusgewaehlteVorstellung()
     {
         return _vorstellungAuswaehlWerkzeug.getAusgewaehlteVorstellung();
+    }
+
+    @Override
+    public void react(Observable source)
+    {
+        if (source == _datumAuswaehlWerkzeug)
+        {
+            System.out.println("Änderung von der Datumsauswahl!");
+        }
+        else if (source == _vorstellungAuswaehlWerkzeug)
+        {
+            System.out.println("Änderung von der Vorstellungsauswahl!");
+        }
     }
 }
