@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertEquals;
 
 public class CountingObserverTest
 {
@@ -25,7 +25,7 @@ public class CountingObserverTest
         {
             CountingObserver observer = new CountingObserver();
             _observable.addObserver(observer);
-            _observers[i] = new CountingObserver();
+            _observers[i] = observer;
 
         }
     }
@@ -41,7 +41,7 @@ public class CountingObserverTest
 
         for (CountingObserver observer : _observers)
         {
-            assertSame(observer.getCallCount(), reactCalls);
+            assertEquals(observer.getCallCount(), reactCalls);
         }
     }
 }
