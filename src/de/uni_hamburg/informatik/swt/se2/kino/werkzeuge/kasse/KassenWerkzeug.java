@@ -2,13 +2,13 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.kasse;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Datum;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Kino;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Tagesplan;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
-import de.uni_hamburg.informatik.swt.se2.kino.observer.Observable;
-import de.uni_hamburg.informatik.swt.se2.kino.observer.Observer;
 import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.datumsauswaehler.DatumAuswaehlWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf.PlatzVerkaufsWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.vorstellungsauswaehler.VorstellungsAuswaehlWerkzeug;
@@ -130,7 +130,7 @@ public class KassenWerkzeug implements Observer
         return _vorstellungAuswaehlWerkzeug.getAusgewaehlteVorstellung();
     }
 
-    @Override
+    /*@Override
     public void react(Observable source)
     {
         if (source == _datumAuswaehlWerkzeug)
@@ -138,6 +138,18 @@ public class KassenWerkzeug implements Observer
             setzeTagesplanFuerAusgewaehltesDatum();
         }
         else if (source == _vorstellungAuswaehlWerkzeug)
+        {
+            setzeAusgewaehlteVorstellung();
+        }
+    }*/
+
+    @Override public void update(Observable o, Object arg)
+    {
+        if (o == _datumAuswaehlWerkzeug)
+        {
+            setzeTagesplanFuerAusgewaehltesDatum();
+        }
+        else if (o == _vorstellungAuswaehlWerkzeug)
         {
             setzeAusgewaehlteVorstellung();
         }

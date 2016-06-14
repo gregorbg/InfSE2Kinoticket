@@ -2,11 +2,11 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.datumsauswaehler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JPanel;
 
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Datum;
-import de.uni_hamburg.informatik.swt.se2.kino.observer.Observable;
 
 /**
  * Mit diesem Werkzeug kann ein Datum ausgewählt werden.
@@ -42,6 +42,7 @@ public class DatumAuswaehlWerkzeug extends Observable
         _ausgewaehltesDatum = _ausgewaehltesDatum.vorherigerTag();
         _ui.getDatumLabel()
                 .setText(_ausgewaehltesDatum.getFormatiertenString());
+        setChanged();
         notifyObservers();
     }
 
@@ -53,6 +54,7 @@ public class DatumAuswaehlWerkzeug extends Observable
         _ausgewaehltesDatum = _ausgewaehltesDatum.naechsterTag();
         _ui.getDatumLabel()
                 .setText(_ausgewaehltesDatum.getFormatiertenString());
+        setChanged();
         notifyObservers();
     }
 

@@ -1,6 +1,7 @@
 package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.vorstellungsauswaehler;
 
 import java.util.List;
+import java.util.Observable;
 
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
@@ -8,7 +9,6 @@ import javax.swing.event.ListSelectionListener;
 
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Tagesplan;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
-import de.uni_hamburg.informatik.swt.se2.kino.observer.Observable;
 
 /**
  * Mit diesem Werkzeug kann der Benutzer oder die Benutzerin eine Vorstellung
@@ -38,6 +38,7 @@ public class VorstellungsAuswaehlWerkzeug extends Observable
      */
     private void vorstellungWurdeAusgewaehlt()
     {
+        setChanged();
         notifyObservers();
     }
 
