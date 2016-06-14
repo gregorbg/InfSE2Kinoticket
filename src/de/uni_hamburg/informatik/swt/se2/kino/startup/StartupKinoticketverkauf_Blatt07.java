@@ -62,8 +62,6 @@ public class StartupKinoticketverkauf_Blatt07
         Datum d2 = d1.naechsterTag();
         Datum d3 = d2.naechsterTag();
 
-        System.out.println("Hallo");
-
         final Vorstellung[] vorstellungen = {
                 // Heute
                 new Vorstellung(saele[0], filme[2], nachmittag, abend, d1, 500),
